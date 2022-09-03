@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const express = require("express");
 const bodyParser = require("body-parser");
 const FileApi = require("./api/FileApi");
@@ -46,3 +47,20 @@ app.listen(PORT, ()=>console.log(`Listening on port ${PORT}`));
 
 
 
+=======
+import { execa } from 'execa';
+
+async function reBuildImage() {
+    return await execa('docker', ['build', '.', '-t', 'cpp_image']);
+}
+
+async function runContainer() {
+    await reBuildImage();
+    const { stdout } = await execa('docker', ['run', '--rm', 'cpp_image']);
+    return stdout;
+}
+
+
+const data = await runContainer();
+console.log(data);
+>>>>>>> 37b9a16bfe3cf1fb56f6048cc2238fc02b230072

@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Import Brace and the AceEditor Component
-import brace from 'brace';
 import AceEditor from 'react-ace';
 // Import a Mode (language)
 import 'brace/mode/java';
 // Import a Theme (okadia, github, xcode etc)
-import 'brace/theme/github';
+import 'brace/theme/monokai';
 
 const editorStyle = {
   border: '1px solid lightgray',
@@ -34,7 +33,7 @@ class CodeEditor extends React.Component {
         width="100%"
         height="200px"
         mode="java"
-        theme="github"
+        theme="monokai"
         name="aceCodeEditor"
         // onLoad={this.onLoad}
         fontSize={14}
@@ -43,12 +42,12 @@ class CodeEditor extends React.Component {
         highlightActiveLine
         value={this.props.code}
         editorProps={{
+        }}
+        setOptions={{
           $blockScrolling: true,
           enableBasicAutocompletion: true,
           enableLiveAutocompletion: true,
           enableSnippets: true,
-        }}
-        setOptions={{
           showLineNumbers: true,
           tabSize: 2,
         }}
