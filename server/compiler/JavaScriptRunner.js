@@ -1,50 +1,32 @@
 const { spawn } = require('child_process');
 const Runner = require('./Runner');
 
-class JavaRunner extends Runner {
+class JavaScriptRunner extends Runner {
   defaultFile() {
     return this.defaultfile;
   }
 
   constructor() {
     super();
-    this.defaultfile = 'Hello.java';
+    this.defaultfile = 'Hello.js';
   }
 
   run(file, directory, filename, extension, callback) {
-    if (extension.toLowerCase() !== '.java') {
-      console.log(`${file} is not a java file.`);
+    if (extension.toLowerCase() !== '.js') {
+      console.log(`${file} is not a javascript file.`);
     }
-    this.compile(file, directory, filename, callback);
+    this.execute(file, directory, callback);
   }
 
-  // compile java source file
-  compile(file, directory, filename, callback) {
+  execute(file, directory, callback) {
     // set working directory for child_process
     const options = { cwd: directory };
-    // var compiler = spawn('javac', ['CodeJava.java']);
-    const argsCompile = [];
-    argsCompile[0] = file;
-    const compiler = spawn('javac', argsCompile);
-    compiler.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
-    });
-    compiler.stderr.on('data', (data) => {
-      console.log(`compile-stderr: ${String(data)}`);
-      callback('1', String(data)); // 1, compile error
-    });
-    compiler.on('close', (data) => {
-      if (data === 0) {
-        this.execute(filename, options, callback);
-      }
-    });
-  }
-
-  // execute the compiled class file
-  execute(filename, options, callback) {
     const argsRun = [];
-    argsRun[0] = filename;
-    const executor = spawn('java', argsRun, options);
+    argsRun[0] = file;
+    console.log(`options: ${options}`);
+    console.log(`argsRun: ${argsRun}`);
+
+    const executor = spawn('node', argsRun, options);
     executor.stdout.on('data', (output) => {
       console.log(String(output));
       callback('0', String(output)); // 0, no error
@@ -63,4 +45,4 @@ class JavaRunner extends Runner {
   }
 }
 
-module.exports = JavaRunner;
+module.exports = JavaScriptRunner;

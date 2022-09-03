@@ -1,8 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const FileApi = require("./api/FileApi");
+const FileApi = require("./api/FileApi.js");
+const RunnerManager = require("./compiler/RunnerManager")
 const PORT = process.env.PORT || 8000;
 const app = express()
+
+//import {execa} from 'execa';
+//execa = require('execa')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -42,7 +46,7 @@ app.post('/api/run', (req, res) => {
     RunnerManager.run(file.lang, file.code, res);
 });
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
-
+/*
 // CPP
 async function reBuildCppImage() {
     return await execa('docker', ['build', './languages/cpp', '-t', 'cpp_image:latest']);
@@ -94,3 +98,4 @@ async function runJavaScript() {
 // runCPP()
 // runPython()
 runJavaScript()
+*/
