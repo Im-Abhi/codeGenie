@@ -1,18 +1,26 @@
 import React from 'react';
 
-import { Button } from '@chakra-ui/react';
+import { HStack, Button, Container, Heading } from '@chakra-ui/react';
 
 const Header = () => (
   <div>
-    <div className="container">
-      <h2>React App - Online Code Editor</h2>
-      <Button color="blue" href="/">
-        Home
-      </Button>
-      <Button color="blue" href="/editor">
-        Code Editor
-      </Button>
-    </div>
+    <Container centerContent paddingBlock={4} rowGap={2}>
+      <Heading as='h3' size='lg'>
+        Online Code Editor
+      </Heading>
+      <HStack>
+        <Button color="blue">
+          <a href='/'>
+            Home
+          </a>
+        </Button>
+        <Button color="blue">
+          <a href='/editor'>
+            Code Editor
+          </a>
+        </Button>
+      </HStack>
+    </Container>
     <hr />
   </div>
 );
