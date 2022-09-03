@@ -30,7 +30,7 @@ class CodeEditor extends React.Component {
         style={editorStyle}
         readOnly={false}
         onChange={this.onChange}
-        width="100%"
+        width="90vw"
         height="200px"
         mode="java"
         theme="monokai"

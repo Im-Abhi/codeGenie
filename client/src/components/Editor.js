@@ -12,8 +12,8 @@ import OutputBox from './controls/OutputBox';
 import StatusImage from './controls/StatusImage';
 import CompilerApi from '../api/CompilerApi';
 
-let languages = ['JavaScript', 'Python', 'Java', 'C', 'C++'];
-const languagesProd = ['JavaScript', 'Python'];
+let languages = ['JavaScript', 'Python', 'C++'];
+const languagesProd = ['JavaScript', 'Python', 'C++'];
 
 class Editor extends React.Component {
   constructor(props) {
@@ -94,7 +94,7 @@ class Editor extends React.Component {
 
   render() {
     return (
-      <Container centerContent>
+      <Container marginInline={0}>
         <FormControl>
           <LangSelector
             langs={languages}
