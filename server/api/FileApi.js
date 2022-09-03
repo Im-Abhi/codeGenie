@@ -7,9 +7,7 @@ module.exports = {
   getFile(lang, callback) {
     let file = '';
     const language = lang.toLowerCase();
-    if (language === 'java') {
-      file = path.join(__dirname, '../templates', 'Hello.java');
-    } else if (language === 'c') {
+    if (language === 'c') {
       file = path.join(__dirname, '../templates', 'Hello.c');
     } else if (language === 'c++') {
       file = path.join(__dirname, '../templates', 'Hello.cpp');
