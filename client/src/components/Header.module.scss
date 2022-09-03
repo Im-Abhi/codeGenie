@@ -1,0 +1,45 @@
+section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 20px auto;
+
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        max-width: 1250px;
+        width: 100%;
+
+        img {
+            height: 60px;
+            width: 90px;
+        }
+
+        @media (max-width: 800px) {
+            padding: 10px 20px;
+        }
+
+        button {
+            background: linear-gradient(
+                101.3deg,
+                #7319b9 8.2%,
+                #083a68 178.62%
+            );
+            color: rgba(227, 227, 227, 1);
+            padding: 6px 35px;
+            border-radius: 5px;
+            font-weight: 600;
+            margin: auto 0px;
+
+            @media (max-width: 800px) {
+                padding: 4px 25px;
+                font-weight: 500;
+            }
+        }
+    }
+}

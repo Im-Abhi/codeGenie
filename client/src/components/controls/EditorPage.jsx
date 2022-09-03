@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-// import { Form, FormGroup, Col, Button } from 'react-bootstrap';
-import LangSelector from './controls/LangSelector';
-import CodeEditor from './controls/CodeEditor';
-import AlertDismissable from './controls/AlertDismissable';
-import OutputBox from './controls/OutputBox';
-import StatusImage from './controls/StatusImage';
-// import CompilerApi from '../api/CompilerApi';
+import LangSelector from "./controls/LangSelector";
+import CodeEditor from "./controls/CodeEditor";
+import AlertDismissable from "./controls/AlertDismissable";
+import OutputBox from "./controls/OutputBox";
+import StatusImage from "./controls/StatusImage";
+import CompilerApi from "../api/CompilerApi";
 
-const languages = ['C', 'C++', 'Java', 'JavaScript', 'Python'];
+const languages = ["C", "C++", "Java", "JavaScript", "Python"];
 
 const EditorPage = () => {
     const [selectedLang, setSelectedLang] = useState(2);
     const [task, setTask] = useState({
-        lang: 'java',
-        code: '',
+        lang: "java",
+        code: "",
     });
     const [response, setResponse] = useState({
-        status: '0',
-        message: '',
+        status: "0",
+        message: "",
     });
 
     const handleRun = (event) => {
@@ -26,19 +25,19 @@ const EditorPage = () => {
         CompilerApi.run(task)
             .then((res) => {
                 setResponse(res);
-            }).catch((error) => {
+            })
+            .catch((error) => {
                 console.log(error);
                 // .handleError(error);
             });
-    }
+    };
 
     const updateSolution = (event) => {
         // event.preventDefault();
         console.log(task);
         const field = event.target.name;
         let newtask = task;
-        newtask[field] = event.target.value,
-            setTask(newtask);
+        (newtask[field] = event.target.value), setTask(newtask);
     };
 
     const handleLangChange = (event) => {
@@ -47,7 +46,7 @@ const EditorPage = () => {
             console.log(task);
             setTask(task);
         });
-        const response = { status: '0', message: '' };
+        const response = { status: "0", message: "" };
         setResponse(response);
         setSelectedLang(index);
     };
@@ -61,7 +60,6 @@ const EditorPage = () => {
 
     return (
         <>
-
             {/* componentDidMount() {
                 CompilerApi.getTask('java')
                     // .then(res => res.json())
@@ -83,16 +81,23 @@ const EditorPage = () => {
                     </FormGroup>
                     <FormGroup controlId="code">
                         <Col sm={12}>
-                            <CodeEditor onChange={handleCodeChange} code={task.code} />
+                            <CodeEditor
+                                onChange={handleCodeChange}
+                                code={task.code}
+                            />
                         </Col>
                     </FormGroup>
                     <FormGroup>
                         <Col sm={2}>
-                            <Button bsStyle="primary" type="button" onClick={handleRun}>
+                            <Button
+                                bsStyle="primary"
+                                type="button"
+                                onClick={handleRun}
+                            >
                                 Run
                             </Button>
                             <StatusImage
-                                hasError={response.status !== '0'}
+                                hasError={response.status !== "0"}
                                 message={response.message}
                             />
                         </Col>
@@ -101,7 +106,7 @@ const EditorPage = () => {
                     <FormGroup>
                         <Col sm={12}>
                             <AlertDismissable
-                                show={response.status !== '0'}
+                                show={response.status !== "0"}
                                 message={response.message}
                             />
                         </Col>
@@ -109,7 +114,7 @@ const EditorPage = () => {
                     <FormGroup>
                         <Col sm={12}>
                             <OutputBox
-                                show={response.status === '0'}
+                                show={response.status === "0"}
                                 message={response.message}
                             />
                         </Col>
@@ -117,7 +122,7 @@ const EditorPage = () => {
                 </Form>
             </div>
         </>
-    )
-}
+    );
+};
 
 export default EditorPage;
