@@ -16,11 +16,12 @@ class LangSelector extends React.Component {
   }
   render() {
     return (
-      <Select placeholder='Select country'
+      <Select
         id="langs"
         className="selectpicker"
         value={this.props.selectedIndex}
         onChange={this.onChange}
+        maxWidth={'200px'}
       >
         {this.props.langs.map((lang, index) => (
           <option key={lang} value={index}>

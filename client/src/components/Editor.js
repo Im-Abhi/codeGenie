@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   Container, FormControl,
-  Button
+  Button, Stack, HStack
 } from '@chakra-ui/react'
 
 import LangSelector from './controls/LangSelector';
@@ -94,29 +94,51 @@ class Editor extends React.Component {
 
   render() {
     return (
-      <Container marginInline={0}>
+      <div>
         <FormControl>
-          <LangSelector
-            langs={languages}
-            selectedIndex={this.state.selectedLang}
-            onChange={this.handleLangChange}
-          />
-          <CodeEditor onChange={this.handleCodeChange} code={this.state.task.code} />
-          <Button colorScheme='blue' onClick={this.handleRun}>Run</Button>
-          <StatusImage
-            hasError={this.state.response.status !== '0'}
-            message={this.state.response.message}
-          />
-          <AlertDismissable
-            show={this.state.response.status !== '0'}
-            message={this.state.response.message}
-          />
-          <OutputBox
-            show={this.state.response.status === '0'}
-            message={this.state.response.message}
-          />
+          <Stack padding={'10px'}>
+            <HStack>
+              <LangSelector
+                langs={languages}
+                selectedIndex={this.state.selectedLang}
+                onChange={this.handleLangChange}
+              />
+            </HStack>
+          </Stack>
+          <div className='editor__container grid px-4 gap-0.5'>
+            <div className='editor'>
+              <CodeEditor onChange={this.handleCodeChange} code={this.state.task.code} />
+            </div>
+            <div className='io__container text-white'>
+              <div className='input-block h-1/2'>
+                <h3 className='bg-black'>Input</h3>
+                <textarea
+                  rows={9}
+                  resize='none'
+                  className='bg-black text-white w-full'
+                >
+                </textarea>
+              </div>
+              <div className='output-block h-1/2 relative'>
+                <h3 className='bg-black'>Output</h3>
+                <StatusImage
+                  hasError={this.state.response.status !== '0'}
+                  message={this.state.response.message}
+                />
+                <AlertDismissable
+                  show={this.state.response.status !== '0'}
+                  message={this.state.response.message}
+                />
+                <OutputBox
+                  show={this.state.response.status === '0'}
+                  message={this.state.response.message}
+                />
+                <Button colorScheme='blue' className='rounded-full !absolute bottom-0 right-0' onClick={this.handleRun}></Button>
+              </div>
+            </div>
+          </div>
         </FormControl>
-      </Container>
+      </div>
     );
   }
 }

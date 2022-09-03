@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Textarea } from '@chakra-ui/react'
-
 class OutputBox extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -12,26 +10,31 @@ class OutputBox extends React.Component {
   render() {
     if (this.props.show) {
       return (
-        <Textarea
+        <textarea
+          className='!bg-black !text-white w-full'
           name="code"
           type="textarea"
           componentClass="textarea"
-          rows="8"
+          rows="9"
           readOnly
           value={this.props.message}
-        />
+        >
+        </textarea>
       );
     }
 
     return (
-      <Textarea
+      <textarea
+        className='!bg-black !text-white'
         name="code"
         type="textarea"
         componentClass="textarea"
-        rows="8"
+        rows="9"
         readOnly
         value=""
-      />
+      >
+
+      </textarea>
     );
   }
 }
