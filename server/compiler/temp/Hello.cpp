@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 
-// main() is where program execution begins.
-int main()
-{
-    cout << "Hello CPP!\n"; // prints Hello CPP!
+int main(){
+freopen("input.txt", "r", stdin);
+    int n;cin>>n;
+    cout<<4*n<<endl;
     return 0;
 }

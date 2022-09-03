@@ -1,7 +1,7 @@
 class Runner {
-    constructor() {}
-  
-    /*
+  constructor() {}
+
+  /*
     set(file, directory, filename, extension, callback) {
       this.file = file;
       this.directory = directory;
@@ -9,11 +9,10 @@ class Runner {
       this.extension = extension;
       this.callback = callback;
     } */
-  
-    run(file, directory, filename, extension, callback) {
-      console.log(this.file);
-    }
+
+  run(file, directory, filename, extension, callback) {
+    console.log(this.file);
   }
-  
-  module.exports = Runner;
-  
+}
+
+module.exports = Runner;

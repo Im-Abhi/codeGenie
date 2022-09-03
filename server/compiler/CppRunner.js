@@ -1,6 +1,6 @@
-const { spawn } = require('child_process');
-const Runner = require('./Runner');
-const path = require('path');
+const { spawn } = require("child_process");
+const Runner = require("./Runner");
+const path = require("path");
 
 class CppRunner extends Runner {
   defaultFile() {
@@ -9,14 +9,15 @@ class CppRunner extends Runner {
 
   constructor() {
     super();
-    this.defaultfile = 'Hello.cpp';
+    this.defaultfile = "Hello.cpp";
   }
 
   run(file, directory, filename, extension, callback) {
-    if (extension.toLowerCase() !== '.cpp') {
+    if (extension.toLowerCase() !== ".cpp") {
       console.log(`${file} is not a cpp file.`);
       return;
     }
+
     this.compile(file, directory, filename, callback);
   }
 
@@ -27,20 +28,20 @@ class CppRunner extends Runner {
     // ['codec.c', '-o','codec.out']
     const argsCompile = [];
     argsCompile[0] = file;
-    argsCompile[1] = '-o';
+    argsCompile[1] = "-o";
     argsCompile[2] = path.join(directory, `${filename}.out`);
     console.log(`argsCompile:${argsCompile}`);
 
     // const compile = spawn('g++', ['Hello.cpp', '-o','Hello.out']);
-    const compiler = spawn('g++', argsCompile);
-    compiler.stdout.on('data', (data) => {
+    const compiler = spawn("g++", argsCompile);
+    compiler.stdout.on("data", (data) => {
       console.log(`stdout: ${data}`);
     });
-    compiler.stderr.on('data', (data) => {
+    compiler.stderr.on("data", (data) => {
       console.log(`compile-stderr: ${String(data)}`);
-      callback('1', String(data)); // 1, compile error
+      callback("1", String(data)); // 1, compile error
     });
-    compiler.on('close', (data) => {
+    compiler.on("close", (data) => {
       if (data === 0) {
         this.execute(directory, filename, options, callback);
       }
@@ -53,15 +54,15 @@ class CppRunner extends Runner {
 
     // const executor = spawn('./Hello.out', [], options);
     const executor = spawn(cmdRun, [], options);
-    executor.stdout.on('data', (output) => {
+    executor.stdout.on("data", (output) => {
       console.log(String(output));
-      callback('0', String(output)); // 0, no error
+      callback("0", String(output)); // 0, no error
     });
-    executor.stderr.on('data', (output) => {
+    executor.stderr.on("data", (output) => {
       console.log(`stderr: ${String(output)}`);
-      callback('2', String(output)); // 2, execution failure
+      callback("2", String(output)); // 2, execution failure
     });
-    executor.on('close', (output) => {
+    executor.on("close", (output) => {
       this.log(`stdout: ${output}`);
     });
   }

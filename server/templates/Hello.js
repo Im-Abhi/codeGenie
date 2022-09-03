@@ -1,3 +1,4 @@
-function hello(){
-    console.log("Hello, javascript!");
+function hello() {
+  console.log("Hello, javascript!");
 }
+hello();
