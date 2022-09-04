@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
 // Import a Mode (language)
 import 'brace/mode/javascript';
+import 'brace/mode/c_cpp';
+import 'brace/mode/python';
+
 // Import a Theme (okadia, github, xcode etc)
 import 'brace/theme/monokai';
 
@@ -31,7 +34,7 @@ class CodeEditor extends React.Component {
         readOnly={false}
         onChange={this.onChange}
         width="100%"
-        height="500px"
+        height="100%"
         mode="javascript"
         theme="monokai"
         name="aceCodeEditor"
