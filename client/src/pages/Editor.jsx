@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import { FaPlay } from "react-icons/fa";
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -117,13 +119,15 @@ class Editor extends React.Component {
         return (
             <div className="h-full">
                 <header className="flex justify-between p-5 items-center">
-                    <div className="image__container">
-                        <img
-                            src="/logo.png"
-                            alt="logo"
-                            width="60px"
-                            height="40px"
-                        />
+                    <div className="image__container cursor-pointer">
+                        <Link to="/">
+                            <img
+                                src="/logo.png"
+                                alt="logo"
+                                width="60px"
+                                height="40px"
+                            />
+                        </Link>
                     </div>
                     <div className="select_lang">
                         <div className="buttons flex gap-4">

@@ -12,8 +12,15 @@ const HeroSection = () => {
                         sessions with
                         <span> Code Ginie</span>
                     </p>
+                    <p className={styles.subSection}>
+                        Run your code with our fast paced IDE to get yourself
+                        rid of nuisances of setting up your local development
+                        environment With our wide support of languages Code
+                        Genie ensures that you spend your time on coding rather
+                        than on setting up development environment.
+                    </p>
                     <Link to="/editor">
-                        <button>Try IDE now</button>
+                        <button>Try our IDE now</button>
                     </Link>
                 </div>
                 <div>
