@@ -1,6 +1,5 @@
-const { spawn } = require('child_process');
-const Runner = require('./Runner');
-
+const Runner = require('./Runner')
+const execa = require("execa")
 class PythonRunner extends Runner {
   defaultFile() {
     return this.defaultfile;
@@ -8,35 +7,29 @@ class PythonRunner extends Runner {
 
   constructor() {
     super();
-    this.defaultfile = 'Hello.py';
+    this.defaultfile = '../../languages/python/main.py';
   }
 
-  run(file, directory, filename, extension, callback) {
+  async run(file, directory, filename, extension, callback) {
     if (extension.toLowerCase() !== '.py') {
-      console.log(`${file} is not a python file.`);
+      return;
     }
-    this.execute(file, directory, callback);
+    await this.runPython(file, directory, callback);
   }
 
-  execute(file, directory, callback) {
-    // set working directory for child_process
-    const options = { cwd: directory };
-    const argsRun = [];
-    argsRun[0] = file;
-    console.log(`options: ${options}`);
-    console.log(`argsRun: ${argsRun}`);
-    const executor = spawn('python', argsRun, options);
-    executor.stdout.on('data', (output) => {
-      console.log(String(output));
-      callback('0', String(output)); // 0, no error
-    });
-    executor.stderr.on('data', (output) => {
-      console.log(`stderr: ${String(output)}`);
-      callback('2', String(output)); // 2, execution failure
-    });
-    executor.on('close', (output) => {
-      this.log(`stdout: ${output}`);
-    });
+  async reBuildPythonImage() {
+    await execa('docker', ['build', './languages/python', '-t', 'python_image:latest']);
+  }
+
+  async runPythonContainer() {
+    await this.reBuildPythonImage();
+    const { stdout } = await execa('docker', ['run', '--rm', 'python_image:latest']);
+    return stdout
+  }
+
+  async runPython() {
+    const data = await this.runPythonContainer();
+    console.log(data);
   }
 
   log(message) {
