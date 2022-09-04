@@ -17,8 +17,6 @@ class CppRunner extends Runner {
       return;
     }
 
-    const res = await this.runCPP(file, directory, filename, callback);
-    return res;
     return await this.runCPP(callback);
   }
 
@@ -38,18 +36,6 @@ class CppRunner extends Runner {
       "--rm",
       "cpp_image:latest",
     ]);
-    return stdout;
-  }
-
-  async runCPP() {
-    const data = await this.runCppContainer();
-    return data;
-    const { stdout, stderr } = await execa("docker", [
-      "run",
-      "--rm",
-      "cpp_image:latest",
-    ]);
-    if (stderr) return stderr;
     return stdout;
   }
 

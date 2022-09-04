@@ -34,24 +34,6 @@ class JavaScriptRunner extends Runner {
       "--rm",
       "javascript_image:latest",
     ]);
-
-    // fs.writeFile(`output.txt`, stdout, (err, outpi) => {
-    //   console.log(err);
-    //   console.log(outpi);
-    // });
-    console.log(stdout);
-    return stdout;
-  }
-
-  async runJavaScript() {
-    const data = await this.runJavascriptContainer();
-    return data;
-    const { stdout, stderr } = await execa("docker", [
-      "run",
-      "--rm",
-      "javascript_image:latest",
-    ]);
-    if (stderr) return stderr;
     return stdout;
   }
 
@@ -65,7 +47,7 @@ class JavaScriptRunner extends Runner {
   }
 
   log(message) {
-    console.log(message);
+    (message);
   }
 }
 
