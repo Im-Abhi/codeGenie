@@ -1,4 +1,7 @@
 
+## LIVE DEMO
+- [Code Genie](http://13.232.192.235)
+
 # Code Genie
 
 ![Logo](https://socialify.git.ci/Im-Abhi/codeGenie/image?logo=https%3A%2F%2Fgithub.com%2FIm-Abhi%2FcodeGenie%2Fblob%2Fmaster%2Fclient%2Fpublic%2Flogo.png%3Fraw%3Dtrue&pattern=Plus&theme=Dark)
@@ -42,11 +45,11 @@ Run your code with our fast paced IDE to get yourself rid of nuisances of settin
 - Language Supported
 ![a](https://user-images.githubusercontent.com/86161191/188305758-7b53e5d0-5957-4ec3-a63d-6e877507722c.png)
 ## Authors
-
+- [Hitesh Rana](https://github.com/hitesh22rana)
 - [Gagan Vats](https://github.com/gaganvats-05)
 - [Faiz Alam](https://github.com/FaizAlam)
 - [Abhishek Gupta](https://github.com/Im-Abhi)
-- [Hitesh Rana](https://github.com/hitesh22rana)
+
 
 
 
