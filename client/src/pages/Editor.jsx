@@ -87,11 +87,22 @@ class Editor extends React.Component {
                         />
                     </div>
                     <div className="select_lang">
-                        <LangSelector
-                            langs={languages}
-                            selectedIndex={this.state.selectedLang}
-                            onChange={this.handleLangChange}
-                        />
+                        <div className="buttons flex gap-4">
+                            <LangSelector
+                                langs={languages}
+                                selectedIndex={this.state.selectedLang}
+                                onChange={this.handleLangChange}
+                            />
+                            <button className="p-2 border border-[#fff] text-[#fff] hover:bg-blend-hue">
+                                Copy
+                            </button>
+                            <button className="p-2 border border-[#fff] text-[#fff]">
+                                Reset
+                            </button>
+                            <button className="p-2 border border-[#fff] text-[#fff]">
+                                Download
+                            </button>
+                        </div>
                     </div>
                 </header>
                 <div className="editor__container grid px-4 gap-0.5 border-t border-[#ffa] h-full">
@@ -102,7 +113,7 @@ class Editor extends React.Component {
                             currentLang={this.state.currentLang}
                         />
                     </div>
-                    <div className="io__container !text-white bg-monokai grid grid-rows-2 border border-[#fff] relative">
+                    <div className="io__container !text-white bg-[#272822] grid grid-rows-2 border border-[#fff] relative">
                         <div className="input-block">
                             <h3 className="io_heading">Input</h3>
                             <textarea
