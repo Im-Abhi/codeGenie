@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import { FaPlay } from "react-icons/fa";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import LangSelector from "../components/controls/LangSelector";
 import CodeEditor from "../components/controls/CodeEditor";
@@ -13,7 +13,7 @@ import OutputBox from "../components/controls/OutputBox";
 import CompilerApi from "../api/CompilerApi";
 
 let languages = ["JavaScript", "Python", "C++"];
-let extensions = ['.js', '.py', '.cpp'];
+let extensions = [".js", ".py", ".cpp"];
 
 class Editor extends React.Component {
     constructor(props) {
@@ -49,11 +49,11 @@ class Editor extends React.Component {
 
     downloadCode() {
         let data = this.state.task.code;
-        let file = 'code.' + extensions[this.state.selectedLang];
-        let link = document.createElement('a');
+        let file = "code." + extensions[this.state.selectedLang];
+        let link = document.createElement("a");
         link.download = file;
-        let blob = new Blob(['' + data + ''], {
-            type: 'text/plain'
+        let blob = new Blob(["" + data + ""], {
+            type: "text/plain",
         });
         link.href = URL.createObjectURL(blob);
         link.click();
@@ -62,7 +62,7 @@ class Editor extends React.Component {
 
     copyCode() {
         navigator.clipboard.writeText(this.state.task.code);
-        toast.success('🦄 Copied to Clipboard!', {
+        toast.success("🦄 Copied to Clipboard!", {
             position: "top-center",
             autoClose: 2000,
             hideProgressBar: false,
@@ -75,7 +75,7 @@ class Editor extends React.Component {
 
     resetCode() {
         const { task } = this.state;
-        task.code = '';
+        task.code = "";
         return this.setState({ task });
     }
 
@@ -149,17 +149,20 @@ class Editor extends React.Component {
                                 selectedIndex={this.state.selectedLang}
                                 onChange={this.handleLangChange}
                             />
-                            <button className="pill-btns rounded-[5px] px-6 p-1 border-2 border-[#fff] text-[#fff]"
+                            <button
+                                className="pill-btns rounded-[5px] px-6 p-1 border-2 border-[#fff] text-[#fff]"
                                 onClick={this.copyCode}
                             >
                                 Copy
                             </button>
-                            <button className="pill-btns rounded-[5px] px-6 p-1 border-2 border-[#fff] text-[#fff]"
+                            <button
+                                className="pill-btns rounded-[5px] px-6 p-1 border-2 border-[#fff] text-[#fff]"
                                 onClick={this.resetCode}
                             >
                                 Reset
                             </button>
-                            <button className="pill-btns rounded-[5px] px-6 p-1 border-2 border-[#fff] text-[#fff]"
+                            <button
+                                className="pill-btns rounded-[5px] px-6 p-1 border-2 border-[#fff] text-[#fff]"
                                 onClick={this.downloadCode}
                             >
                                 Download
