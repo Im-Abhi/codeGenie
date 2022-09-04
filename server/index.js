@@ -3,7 +3,10 @@ const bodyParser = require("body-parser");
 const FileApi = require("./api/FileApi.js");
 const RunnerManager = require("./compiler/RunnerManager")
 const PORT = process.env.PORT || 8000;
+const fs = require('fs');
+
 const app = express()
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -34,6 +37,16 @@ app.get('/api/file/:lang', (req, res) => {
 app.post('/api/run', async (req, res) => {
     const file = req.body;
     return RunnerManager.run(file.lang, file.code, res);
+});
+
+app.post('/api/input', (req, res) => {
+    const { input } = req.body;
+    fs.writeFileSync('./languages/python/input.txt', input, (err) => {
+        console.log(rrr);
+    });
+    fs.writeFileSync('./languages/cpp/input.txt', input, (err) => {
+        console.log(rrr);
+    });
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

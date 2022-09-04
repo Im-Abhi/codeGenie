@@ -23,6 +23,7 @@ class Editor extends React.Component {
                 status: "0",
                 message: "",
             },
+            input: "",
         };
 
         this.handleRun = this.handleRun.bind(this);
@@ -54,6 +55,13 @@ class Editor extends React.Component {
             .catch((error) => {
                 console.log(error);
             });
+        fetch("http://localhost:8000/api/input", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({ input: this.state.input }),
+        });
     }
 
     handleLangChange(event) {
@@ -98,9 +106,17 @@ class Editor extends React.Component {
                         <div className="input-block">
                             <h3 className="io_heading">Input</h3>
                             <textarea
+                                disabled={
+                                    this.state.selectedLang === 0 ? true : false
+                                }
+                                // disabled={true}
+                                value={this.state.input}
                                 rows={9}
                                 resize="none"
                                 className="bg-black text-white w-full border-b border-[#fff]"
+                                onChange={(e) =>
+                                    this.setState({ input: e.target.value })
+                                }
                             ></textarea>
                         </div>
                         <div className="output-block">

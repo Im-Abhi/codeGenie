@@ -36,7 +36,7 @@ module.exports = {
       ].join("");
       code = tempcode;
     } else if (lang === "Python") {
-      add = "import sys\nsys.stdin = open('input.txt', 'r')\n";
+      add = "import sys\nsys.stdin = open('input.txt', 'r+')\n";
       var tempcode = [code.slice(0, 0), add, code.slice(0)].join("");
       code = tempcode;
     }
