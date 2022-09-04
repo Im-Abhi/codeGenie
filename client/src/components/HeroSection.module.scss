@@ -1,172 +1,176 @@
 section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-
-  .wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 20px;
-    max-width: 1250px;
-    width: 100%;
-
-    div:nth-child(1) {
-      font-size: 2.5em;
-      font-weight: 600;
-      width: 50%;
-
-      p {
-        color: rgba(227, 227, 227, 1);
-        span {
-          color: rgba(113, 37, 181, 1);
-        }
-      }
-
-      > span {
-        color: rgb(169, 166, 166);
-        font-size: 1rem;
-        letter-spacing: 1px;
-        line-height: 5px !important;
-        font-weight: 500;
-      }
-
-      @media (max-width: 1000px) {
-        font-size: 2em;
-      }
-
-      @media (max-width: 800px) {
-        font-size: 1.6em;
-      }
-
-      button {
-        background: linear-gradient(101.3deg, #7319b9 8.2%, #083a68 178.62%);
-        color: rgba(227, 227, 227, 1);
-        padding: 6px 35px;
-        border-radius: 5px;
-        font-weight: 600;
-        font-size: 1.2rem;
-      }
-    }
-
-    div:last-child {
-      width: 600px;
-      height: 100%;
-
-      img {
-        height: 100%;
-        width: 100%;
-      }
-
-      @media (max-width: 1000px) {
-        width: 50%;
-      }
-    }
-
-    @media (max-width: 800px) {
-      flex-direction: column;
-      align-items: center;
-
-      div:nth-child(1) {
-        width: 80%;
-        justify-content: center;
-        align-items: center;
-
-        p {
-          width: 100%;
-          margin: 0px auto;
-        }
-
-        @media (max-width: 600px) {
-          width: 100%;
-        }
-      }
-
-      div:last-child {
-        width: 80%;
-      }
-    }
-  }
-
-  @media (max-width: 800px) {
-    .wrapper {
-      padding: 0px 20px;
-    }
-  }
-
-  .glassMorphism {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    margin: 10px;
-    padding: 10px;
 
-    h2 {
-      color: rgba(227, 227, 227, 1);
-      margin: 40px auto 10px auto;
-      font-size: 2em;
-      font-weight: 500;
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px;
+        max-width: 1250px;
+        width: 100%;
 
-      @media (max-width: 800px) {
-        font-size: 1.3em;
-      }
+        div:nth-child(1) {
+            font-size: 2.5em;
+            font-weight: 600;
+            width: 50%;
+
+            p {
+                color: rgba(227, 227, 227, 1);
+                span {
+                    color: rgba(113, 37, 181, 1);
+                }
+            }
+
+            .subSection {
+                color: rgb(169, 166, 166);
+                font-size: 1rem;
+                letter-spacing: 1px;
+                font-weight: 500;
+                margin: 20px auto;
+            }
+
+            @media (max-width: 1000px) {
+                font-size: 2em;
+            }
+
+            @media (max-width: 800px) {
+                font-size: 1.6em;
+            }
+
+            button {
+                background: linear-gradient(
+                    101.3deg,
+                    #7319b9 8.2%,
+                    #083a68 178.62%
+                );
+                color: rgba(227, 227, 227, 1);
+                padding: 6px 35px;
+                border-radius: 5px;
+                font-weight: 600;
+                font-size: 1.2rem;
+            }
+        }
+
+        div:last-child {
+            width: 600px;
+            height: 100%;
+
+            img {
+                height: 100%;
+                width: 100%;
+            }
+
+            @media (max-width: 1000px) {
+                width: 50%;
+            }
+        }
+
+        @media (max-width: 800px) {
+            flex-direction: column;
+            align-items: center;
+
+            div:nth-child(1) {
+                width: 80%;
+                justify-content: center;
+                align-items: center;
+
+                p {
+                    width: 100%;
+                    margin: 0px auto;
+                }
+
+                @media (max-width: 600px) {
+                    width: 100%;
+                }
+            }
+
+            div:last-child {
+                width: 80%;
+            }
+        }
     }
 
-    .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      border: 2px solid rgba(93, 74, 115, 1);
-      margin: 20px auto;
-      max-width: 800px;
-      width: 100%;
-      min-height: 180px;
-      height: auto;
-      border-radius: 20px;
-      flex-wrap: wrap;
+    @media (max-width: 800px) {
+        .wrapper {
+            padding: 0px 20px;
+        }
+    }
 
-      background: linear-gradient(
-          89.97deg,
-          #201540 0.06%,
-          #2a1c46 30.39%,
-          #32204c 55.75%,
-          #401c50 76.64%,
-          #431c5b 95.53%
-        ),
-        linear-gradient(0deg, #5d4a73, #5d4a73);
-      padding: 20px;
-
-      div {
+    .glassMorphism {
         display: flex;
         flex-direction: column;
-        color: rgba(227, 227, 227, 1);
-        margin: 20px;
-        img {
-          height: 100px;
-          width: 100px;
+        align-items: center;
+        width: 100%;
+        margin: 10px;
+        padding: 10px;
+
+        h2 {
+            color: rgba(227, 227, 227, 1);
+            margin: 40px auto 10px auto;
+            font-size: 2em;
+            font-weight: 500;
+
+            @media (max-width: 800px) {
+                font-size: 1.3em;
+            }
         }
 
-        span {
-          font-size: 1em;
-          font-weight: 500;
-          text-align: center;
-          margin: 10px auto;
-        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            border: 2px solid rgba(93, 74, 115, 1);
+            margin: 20px auto;
+            max-width: 800px;
+            width: 100%;
+            min-height: 180px;
+            height: auto;
+            border-radius: 20px;
+            flex-wrap: wrap;
 
-        @media (max-width: 600px) {
-          img {
-            height: 60px;
-            width: 60px;
-          }
+            background: linear-gradient(
+                    89.97deg,
+                    #201540 0.06%,
+                    #2a1c46 30.39%,
+                    #32204c 55.75%,
+                    #401c50 76.64%,
+                    #431c5b 95.53%
+                ),
+                linear-gradient(0deg, #5d4a73, #5d4a73);
+            padding: 20px;
 
-          span {
-            font-size: 0.7em;
-          }
+            div {
+                display: flex;
+                flex-direction: column;
+                color: rgba(227, 227, 227, 1);
+                margin: 20px;
+                img {
+                    height: 100px;
+                    width: 100px;
+                }
+
+                span {
+                    font-size: 1em;
+                    font-weight: 500;
+                    text-align: center;
+                    margin: 10px auto;
+                }
+
+                @media (max-width: 600px) {
+                    img {
+                        height: 60px;
+                        width: 60px;
+                    }
+
+                    span {
+                        font-size: 0.7em;
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
