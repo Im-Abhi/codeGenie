@@ -30,7 +30,6 @@ class Editor extends React.Component {
                 message: "",
             },
             input: "",
-            isLoading: false,
         };
 
         this.handleRun = this.handleRun.bind(this);
@@ -87,7 +86,6 @@ class Editor extends React.Component {
 
     handleRun(event) {
         event.preventDefault();
-        this.setState({ isLoading: !this.state.isLoading });
         const response = { status: "0", message: "" };
         this.setState({ response });
         const { task } = this.state;
@@ -105,7 +103,6 @@ class Editor extends React.Component {
             },
             body: JSON.stringify({ input: this.state.input }),
         });
-        this.setState({ isLoading: !this.state.isLoading });
     }
 
     handleLangChange(event) {
@@ -194,35 +191,23 @@ class Editor extends React.Component {
                                 }
                             ></textarea>
                         </div>
-
-                        {this.state.isLoading ? (
-                            <div className="flex justify-center items-center w-full h-full">
-                                <img
-                                    src="./loading.gif"
-                                    alt="loader"
-                                    height="250px"
-                                    width="250px"
-                                />
-                            </div>
-                        ) : (
-                            <div className="output-block">
-                                <h3 className="io_heading">Output</h3>
-                                <AlertDismissable
-                                    show={this.state.response.status !== "0"}
-                                    message={this.state.response.message}
-                                />
-                                <OutputBox
-                                    show={this.state.response.status === "0"}
-                                    message={this.state.response.message}
-                                />
-                                <button
-                                    className="rounded-full !absolute top-1 bg-[#6429c8] p-3 hover:bg-[#fff] transition-all duration-300 runButton"
-                                    onClick={this.handleRun}
-                                >
-                                    <FaPlay className="text-[#fff]" />
-                                </button>
-                            </div>
-                        )}
+                        <div className="output-block">
+                            <h3 className="io_heading">Output</h3>
+                            <AlertDismissable
+                                show={this.state.response.status !== "0"}
+                                message={this.state.response.message}
+                            />
+                            <OutputBox
+                                show={this.state.response.status === "0"}
+                                message={this.state.response.message}
+                            />
+                            <button
+                                className="rounded-full !absolute top-1 bg-[#6429c8] p-3 hover:bg-[#fff] transition-all duration-300 runButton"
+                                onClick={this.handleRun}
+                            >
+                                <FaPlay className="text-[#fff]" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
