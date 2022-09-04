@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Select } from '@chakra-ui/react';
-
 class LangSelector extends React.Component {
   constructor(props) {
     super(props);
@@ -16,12 +14,12 @@ class LangSelector extends React.Component {
   }
   render() {
     return (
-      <Select
+      <select
         id="langs"
         className="selectpicker"
         value={this.props.selectedIndex}
         onChange={this.onChange}
-        maxWidth={'200px'}
+
       >
         {this.props.langs.map((lang, index) => (
           <option key={lang} value={index}>
@@ -29,7 +27,7 @@ class LangSelector extends React.Component {
             {lang}{' '}
           </option>
         ))}
-      </Select>
+      </select>
     );
   }
 }
