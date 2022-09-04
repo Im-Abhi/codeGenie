@@ -12,6 +12,13 @@ const HeroSection = () => {
             with
             <span> Code Ginie</span>
           </p>
+          <span>
+            Run your code with our fast paced IDE to get yourself rid of
+            nuisances of setting up your local development environment for every
+            single code you write. With our wide support of more than 3
+            languages Code Genie ensures you spend your time on coding rather
+            than on setting up development environment.
+          </span>
           <Link to="/editor">
             <button>Try IDE now</button>
           </Link>

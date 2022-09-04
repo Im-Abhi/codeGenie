@@ -5,23 +5,16 @@ import LangSelector from "../components/controls/LangSelector";
 import CodeEditor from "../components/controls/CodeEditor";
 import AlertDismissable from "../components/controls/AlertDismissable";
 import OutputBox from "../components/controls/OutputBox";
-import StatusImage from "../components/controls/StatusImage";
 import CompilerApi from "../api/CompilerApi";
 
 let languages = ["JavaScript", "Python", "C++"];
-const languagesProd = ["JavaScript", "Python", "C++"];
 
 class Editor extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log(`env: ${process.env.NODE_ENV}`);
-        if (process.env.NODE_ENV === "production") {
-            languages = languagesProd;
-        }
-
         this.state = {
-            selectedLang: 0, // JavaScript
+            selectedLang: 0,
             task: {
                 lang: "javascript",
                 code: "",
@@ -30,57 +23,50 @@ class Editor extends React.Component {
                 status: "0",
                 message: "",
             },
+            input: "",
         };
 
         this.handleRun = this.handleRun.bind(this);
-        this.updateSolution = this.updateSolution.bind(this);
         this.handleLangChange = this.handleLangChange.bind(this);
         this.handleCodeChange = this.handleCodeChange.bind(this);
     }
 
     componentDidMount() {
-        CompilerApi.getTask("javascript")
-            // .then(res => res.json())
-            .then((task) => {
-                console.log(task);
-                this.setState({ task });
-            });
+        CompilerApi.getTask("javascript").then((task) => {
+            this.setState({ task });
+        });
     }
 
     handleCodeChange(code) {
         const { task } = this.state;
         task.code = code;
-        console.log(code);
         return this.setState({ task });
     }
 
     handleRun(event) {
         event.preventDefault();
+        const response = { status: "0", message: "" };
+        this.setState({ response });
         const { task } = this.state;
-        console.log(task);
         CompilerApi.run(task)
             .then((res) => {
                 this.setState({ response: res });
             })
             .catch((error) => {
                 console.log(error);
-                // this.handleError(error);
             });
-    }
-
-    updateSolution(event) {
-        // event.preventDefault();
-        console.log(this.state.task);
-        const field = event.target.name;
-        const { task } = this.state;
-        task[field] = event.target.value;
-        return this.setState({ task });
+        fetch("http://localhost:8000/api/input", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({ input: this.state.input }),
+        });
     }
 
     handleLangChange(event) {
         const index = parseInt(event.target.value, 10);
         CompilerApi.getTask(languages[index]).then((task) => {
-            console.log(task);
             this.setState({ task });
         });
         const response = { status: "0", message: "" };
@@ -116,21 +102,25 @@ class Editor extends React.Component {
                             currentLang={this.state.currentLang}
                         />
                     </div>
-                    <div className="io__container !text-white bg-monokai grid grid-rows-2 border border-[#fff]">
+                    <div className="io__container !text-white bg-monokai grid grid-rows-2 border border-[#fff] relative">
                         <div className="input-block">
                             <h3 className="io_heading">Input</h3>
                             <textarea
+                                disabled={
+                                    this.state.selectedLang === 0 ? true : false
+                                }
+                                // disabled={true}
+                                value={this.state.input}
                                 rows={9}
                                 resize="none"
                                 className="bg-black text-white w-full border-b border-[#fff]"
+                                onChange={(e) =>
+                                    this.setState({ input: e.target.value })
+                                }
                             ></textarea>
                         </div>
-                        <div className="output-block relative">
+                        <div className="output-block">
                             <h3 className="io_heading">Output</h3>
-                            <StatusImage
-                                hasError={this.state.response.status !== "0"}
-                                message={this.state.response.message}
-                            />
                             <AlertDismissable
                                 show={this.state.response.status !== "0"}
                                 message={this.state.response.message}
@@ -140,7 +130,7 @@ class Editor extends React.Component {
                                 message={this.state.response.message}
                             />
                             <button
-                                className="rounded-full !absolute top-1 right-3 bg-[#6429c8] p-3 hover:bg-[#fff] transition-all duration-300 runButton"
+                                className="rounded-full !absolute top-1 bg-[#6429c8] p-3 hover:bg-[#fff] transition-all duration-300 runButton"
                                 onClick={this.handleRun}
                             >
                                 <FaPlay className="text-[#fff]" />

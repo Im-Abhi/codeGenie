@@ -15,7 +15,7 @@ class JavaScriptRunner extends Runner {
     if (extension.toLowerCase() !== ".js") {
       return;
     }
-    return await this.runJavaScript(file, directory, callback);
+    return await this.runJavaScript(callback);
   }
 
   async reBuildJavascriptImage() {
@@ -46,6 +46,22 @@ class JavaScriptRunner extends Runner {
   async runJavaScript() {
     const data = await this.runJavascriptContainer();
     return data;
+    const { stdout, stderr } = await execa("docker", [
+      "run",
+      "--rm",
+      "javascript_image:latest",
+    ]);
+    if (stderr) return stderr;
+    return stdout;
+  }
+
+  async runJavaScript(callback) {
+    try {
+      const data = await this.runJavascriptContainer();
+      callback("0", String(data));
+    } catch (err) {
+      callback("2", String(err));
+    }
   }
 
   log(message) {

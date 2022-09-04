@@ -7,7 +7,6 @@ class CompilerApi {
 
   static getTask(lang) {
     return HttpHelper.fetch(
-      
       //`${process.env.API_URL}/api/file/${lang}`,
       `http://localhost:8000/api/file/${lang}`,
 

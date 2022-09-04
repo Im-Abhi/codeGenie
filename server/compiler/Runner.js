@@ -1,6 +1,6 @@
 class Runner {
   constructor() { }
-  run(file, directory, filename, extension, callback) {
+  async run(file, directory, filename, extension, callback) {
   }
 }
 
