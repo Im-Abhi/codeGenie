@@ -19,12 +19,10 @@ module.exports = {
       callback('');
       return;
     }
-    console.log(`getTemplate:${file}`);
     fs.readFile(file, (err, data) => {
       if (err) {
         throw err;
       }
-      console.log(data.toString());
       callback(data.toString());
     });
   },

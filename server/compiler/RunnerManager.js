@@ -3,7 +3,7 @@ const FileApi = require("../api/FileApi");
 const CRunner = require("./CRunner");
 const CppRunner = require("./CppRunner");
 const JavaScriptRunner = require("./JavaScriptRunner");
-const PythonRunner = require("./PythonRunner");
+const PythonRunner = require("./PythonRunner.js");
 
 function Factory() {
   this.createRunner = function createRunner(lang) {
@@ -25,9 +25,8 @@ function Factory() {
 
 module.exports = {
   run(lang, code, res) {
-    console.log(`lang: -> ${lang}`);
     var add = '\nfreopen("input.txt", "r", stdin);';
-    if (lang == "C++") {
+    if (lang === "C++") {
       add = '\nfreopen("input.txt", "r", stdin);';
       let position = code.search("main");
       var tempcode = [
@@ -36,22 +35,19 @@ module.exports = {
         code.slice(position + 7),
       ].join("");
       code = tempcode;
-      console.log(tempcode);
-    } else if (lang == "Python") {
+    } else if (lang === "Python") {
       add = "import sys\nsys.stdin = open('input.txt', 'r')\n";
       var tempcode = [code.slice(0, 0), add, code.slice(0)].join("");
       code = tempcode;
-      console.log(tempcode);
+    } else if (lang === "javascript") {
+
     }
     const factory = new Factory();
     const runner = factory.createRunner(lang.toLowerCase());
     const directory = path.join(__dirname, "temp");
     const file = path.join(directory, runner.defaultFile());
-    console.log(`file: ${file}`);
-    const filename = path.parse(file).name; // main
-    const extension = path.parse(file).ext; // .java
-    console.log(`filename: ${filename}`);
-    console.log(`extension: ${extension}`);
+    const filename = path.parse(file).name;
+    const extension = path.parse(file).ext;
 
     FileApi.saveFile(file, code, () => {
       runner.run(file, directory, filename, extension, (status, message) => {
