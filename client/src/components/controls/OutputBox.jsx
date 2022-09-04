@@ -11,7 +11,7 @@ class OutputBox extends React.Component {
         if (this.props.show) {
             return (
                 <textarea
-                    className="!bg-black !text-white w-full"
+                    className="!text-white w-full"
                     name="code"
                     type="textarea"
                     componentClass="textarea"
@@ -24,7 +24,7 @@ class OutputBox extends React.Component {
 
         return (
             <textarea
-                className="!bg-black !text-white"
+                className="!text-white"
                 name="code"
                 type="textarea"
                 componentClass="textarea"
