@@ -1,5 +1,6 @@
-const Runner = require('./Runner')
-const execa = require("execa")
+const Runner = require("./Runner");
+const execa = require("execa");
+const fs = require("fs");
 
 class CppRunner extends Runner {
   defaultFile() {
@@ -8,7 +9,7 @@ class CppRunner extends Runner {
 
   constructor() {
     super();
-    this.defaultfile = '../../languages/cpp/main.cpp';
+    this.defaultfile = "../../languages/cpp/main.cpp";
   }
 
   async run(file, directory, filename, extension, callback) {
@@ -16,22 +17,32 @@ class CppRunner extends Runner {
       return;
     }
 
-    await this.runCPP(file, directory, filename, callback);
+    const res = await this.runCPP(file, directory, filename, callback);
+    return res;
   }
 
   async reBuildCppImage() {
-    return await execa('docker', ['build', './languages/cpp', '-t', 'cpp_image:latest']);
+    return await execa("docker", [
+      "build",
+      "./languages/cpp",
+      "-t",
+      "cpp_image:latest",
+    ]);
   }
 
   async runCppContainer() {
     await this.reBuildCppImage();
-    const { stdout } = await execa('docker', ['run', '--rm', 'cpp_image:latest']);
+    const { stdout } = await execa("docker", [
+      "run",
+      "--rm",
+      "cpp_image:latest",
+    ]);
     return stdout;
   }
 
   async runCPP() {
     const data = await this.runCppContainer();
-    console.log(data);
+    return data;
   }
 
   log(message) {

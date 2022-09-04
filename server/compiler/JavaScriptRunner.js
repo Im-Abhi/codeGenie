@@ -1,6 +1,6 @@
-const Runner = require('./Runner.js');
+const Runner = require("./Runner.js");
 const execa = require("execa");
-
+const fs = require("fs");
 class JavaScriptRunner extends Runner {
   defaultFile() {
     return this.defaultfile;
@@ -8,29 +8,44 @@ class JavaScriptRunner extends Runner {
 
   constructor() {
     super();
-    this.defaultfile = '../../languages/javascript/main.js';
+    this.defaultfile = "../../languages/javascript/main.js";
   }
 
   async run(file, directory, filename, extension, callback) {
-    if (extension.toLowerCase() !== '.js') {
+    if (extension.toLowerCase() !== ".js") {
       return;
     }
-    await this.runJavaScript(file, directory, callback);
+    return await this.runJavaScript(file, directory, callback);
   }
 
   async reBuildJavascriptImage() {
-    await execa('docker', ['build', './languages/javascript', '-t', 'javascript_image:latest']);
+    await execa("docker", [
+      "build",
+      "./languages/javascript",
+      "-t",
+      "javascript_image:latest",
+    ]);
   }
 
   async runJavascriptContainer() {
     await this.reBuildJavascriptImage();
-    const { stdout } = await execa('docker', ['run', '--rm', 'javascript_image:latest']);
-    return stdout
+    const { stdout } = await execa("docker", [
+      "run",
+      "--rm",
+      "javascript_image:latest",
+    ]);
+
+    // fs.writeFile(`output.txt`, stdout, (err, outpi) => {
+    //   console.log(err);
+    //   console.log(outpi);
+    // });
+    console.log(stdout);
+    return stdout;
   }
 
   async runJavaScript() {
     const data = await this.runJavascriptContainer();
-    console.log(data);
+    return data;
   }
 
   log(message) {
