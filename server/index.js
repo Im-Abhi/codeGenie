@@ -22,20 +22,18 @@ app.use((req, res, next) => {
 
 app.get('/api/file/:lang', (req, res) => {
     const language = req.params.lang;
-    console.log(language);
     FileApi.getFile(language, (content) => {
         const file = {
             lang: language,
             code: content,
         };
-        res.send(JSON.stringify(file));
+        return res.send(JSON.stringify(file));
     });
 });
 
-
-app.post('/api/run', (req, res) => {
+app.post('/api/run', async (req, res) => {
     const file = req.body;
-    console.log(`file.lang: ${file.lang}`, `file.code:${file.code}`);
-    RunnerManager.run(file.lang, file.code, res);
+    return RunnerManager.run(file.lang, file.code, res);
 });
+
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

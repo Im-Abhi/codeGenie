@@ -39,23 +39,22 @@ module.exports = {
       add = "import sys\nsys.stdin = open('input.txt', 'r')\n";
       var tempcode = [code.slice(0, 0), add, code.slice(0)].join("");
       code = tempcode;
-    } else if (lang === "javascript") {
-
     }
+
     const factory = new Factory();
     const runner = factory.createRunner(lang.toLowerCase());
-    const directory = path.join(__dirname, "temp");
+    const directory = path.join(__dirname, "languages");
     const file = path.join(directory, runner.defaultFile());
     const filename = path.parse(file).name;
     const extension = path.parse(file).ext;
 
-    FileApi.saveFile(file, code, () => {
+    FileApi.saveFile(file, code, async () => {
       runner.run(file, directory, filename, extension, (status, message) => {
         const result = {
           status,
           message,
         };
-        res.end(JSON.stringify(result));
+        return res.send(JSON.stringify(result));
       });
     });
   },

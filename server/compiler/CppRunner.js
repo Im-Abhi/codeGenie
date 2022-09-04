@@ -15,8 +15,7 @@ class CppRunner extends Runner {
     if (extension.toLowerCase() !== ".cpp") {
       return;
     }
-
-    await this.runCPP(file, directory, filename, callback);
+    return await this.runCPP(callback);
   }
 
   async reBuildCppImage() {
@@ -25,13 +24,18 @@ class CppRunner extends Runner {
 
   async runCppContainer() {
     await this.reBuildCppImage();
-    const { stdout } = await execa('docker', ['run', '--rm', 'cpp_image:latest']);
+    const { stdout, stderr } = await execa('docker', ['run', '--rm', 'cpp_image:latest']);
+    if (stderr) return stderr;
     return stdout;
   }
 
-  async runCPP() {
-    const data = await this.runCppContainer();
-    console.log(data);
+  async runCPP(callback) {
+    try {
+      const data = await this.runCppContainer();
+      callback('0', String(data));
+    } catch (err) {
+      callback('2', String(err));
+    }
   }
 
   log(message) {

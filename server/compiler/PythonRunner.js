@@ -14,7 +14,7 @@ class PythonRunner extends Runner {
     if (extension.toLowerCase() !== '.py') {
       return;
     }
-    await this.runPython(file, directory, callback);
+    return await this.runPython(callback);
   }
 
   async reBuildPythonImage() {
@@ -23,13 +23,18 @@ class PythonRunner extends Runner {
 
   async runPythonContainer() {
     await this.reBuildPythonImage();
-    const { stdout } = await execa('docker', ['run', '--rm', 'python_image:latest']);
-    return stdout
+    const { stdout, stderr } = await execa('docker', ['run', '--rm', 'python_image:latest']);
+    if (stderr) return stderr;
+    return stdout;
   }
 
-  async runPython() {
-    const data = await this.runPythonContainer();
-    console.log(data);
+  async runPython(callback) {
+    try {
+      const data = await this.runPythonContainer();
+      callback('0', String(data));
+    } catch (err) {
+      callback('2', String(err));
+    }
   }
 
   log(message) {

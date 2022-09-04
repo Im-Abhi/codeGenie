@@ -127,6 +127,11 @@ textarea {
   font-weight: 600;
 }
 
+.runButton {
+  left: -3em;
+}
+
+
 .runButton:hover > svg {
   color: #6429c8;
 }
