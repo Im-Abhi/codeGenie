@@ -52,13 +52,11 @@ body {
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(
-    295.67deg,
-    #3b0260 -14.13%,
-    #280239 21.75%,
-    #0b0a32 54.77%,
-    #011338 80.02%
-  );
+  background: linear-gradient(295.67deg,
+      #3b0260 -14.13%,
+      #280239 21.75%,
+      #0b0a32 54.77%,
+      #011338 80.02%);
   min-height: 100vh;
 }
 
@@ -76,16 +74,14 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
   background-color: #aaa;
   border-radius: 10px;
-  background-image: -webkit-linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.2) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(0, 0, 0, 0.2) 50%,
-    rgba(0, 0, 0, 0.2) 75%,
-    transparent 75%,
-    transparent
-  );
+  background-image: -webkit-linear-gradient(90deg,
+      rgba(0, 0, 0, 0.2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.2) 75%,
+      transparent 75%,
+      transparent);
 }
 
 code {
@@ -131,7 +127,14 @@ textarea {
   left: -3em;
 }
 
-
-.runButton:hover > svg {
+.runButton:hover>svg {
   color: #6429c8;
+}
+
+.pill-btns {
+  color: white;
+}
+
+.pill-btns:hover {
+  background: linear-gradient(101.3deg, #7319b9 8.2%, #083a68 178.62%)
 }
