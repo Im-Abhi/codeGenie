@@ -1,47 +1,44 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 class OutputBox extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {};
-  }
-
-  render() {
-    if (this.props.show) {
-      return (
-        <textarea
-          className='!bg-black !text-white w-full'
-          name="code"
-          type="textarea"
-          componentClass="textarea"
-          rows="9"
-          readOnly
-          value={this.props.message}
-        >
-        </textarea>
-      );
+    constructor(props, context) {
+        super(props, context);
+        this.state = {};
     }
 
-    return (
-      <textarea
-        className='!bg-black !text-white'
-        name="code"
-        type="textarea"
-        componentClass="textarea"
-        rows="9"
-        readOnly
-        value=""
-      >
+    render() {
+        if (this.props.show) {
+            return (
+                <textarea
+                    className="!bg-black !text-white w-full"
+                    name="code"
+                    type="textarea"
+                    componentClass="textarea"
+                    rows="9"
+                    readOnly
+                    value={this.props.message}
+                ></textarea>
+            );
+        }
 
-      </textarea>
-    );
-  }
+        return (
+            <textarea
+                className="!bg-black !text-white"
+                name="code"
+                type="textarea"
+                componentClass="textarea"
+                rows="9"
+                readOnly
+                value=""
+            ></textarea>
+        );
+    }
 }
 
 OutputBox.propTypes = {
-  show: PropTypes.bool.isRequired,
-  message: PropTypes.string.isRequired,
+    show: PropTypes.bool.isRequired,
+    message: PropTypes.string.isRequired,
 };
 
 export default OutputBox;

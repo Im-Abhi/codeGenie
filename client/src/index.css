@@ -116,7 +116,7 @@ textarea {
   background-color: #272822;
   resize: none;
   height: 80%;
-  padding-left: 10px;
+  padding-inline: 20px;
   outline: none;
   color: #e6db74;
 }
@@ -125,4 +125,8 @@ textarea {
   color: white;
   padding: 1rem;
   font-weight: 600;
+}
+
+.runButton:hover > svg {
+  color: #6429c8;
 }
