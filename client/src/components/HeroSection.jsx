@@ -10,7 +10,7 @@ const HeroSection = () => {
                     <p>
                         Bring out the best in you & have safe and collaborative
                         sessions with
-                        <span> Code Ginie</span>
+                        <span> Code Genie</span>
                     </p>
                     <p className={styles.subSection}>
                         Run your code with our fast paced IDE to get yourself
